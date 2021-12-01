@@ -1,0 +1,16 @@
+.icon-custom {
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.icon-custom:hover {
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+  font-weight: bold;
+  color: #fff;
+  background-color: #333333;
+}
+/*# sourceMappingURL=app.component.css.map */

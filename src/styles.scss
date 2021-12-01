@@ -1,1 +1,66 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+  background-color: #6bb9f4;
+  background-image: linear-gradient(155deg, #6bb9f4 10%, #837edb 90%);
+}
+
+ul {
+  list-style: none;
+}
+
+// Global card styles
+.wrap-card {
+  background-color: #cccccc;
+  background-image: linear-gradient(160deg, #cccccc 15%, #b8bbbe 90%);
+
+  border-radius: 2%;
+  padding: 0.5rem;
+  padding-bottom: 0;
+  border-radius: 4px;
+
+  h2 {
+    line-height: 2.5rem;
+    font-size: 1.8rem;
+    margin-left: 1rem;
+  }
+
+  ul {
+    min-height: 26px;
+  }
+}
+
+.card-foot {
+  display: inline-block;
+  margin: 0.5rem;
+
+  &-add {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 500;
+    padding: 2px 3px;
+    background-color: #ccc;
+    border-radius: 4px;
+    transition: all .3s ease;
+  }
+
+  &-add:hover {
+    background-color: #0d8d7b;
+    color: #FFF;
+  }
+
+  p {
+    margin: 0;
+    display: inline-block;
+    margin-right: 4px;
+  }
+}
+
+.card-foot:hover {
+  cursor: pointer;
+}

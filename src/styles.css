@@ -1,0 +1,80 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+body {
+  background-color: #6bb9f4;
+  background-image: linear-gradient(155deg, #6bb9f4 10%, #837edb 90%);
+}
+
+ul {
+  list-style: none;
+}
+
+.wrap-card {
+  background-color: #cccccc;
+  background-image: linear-gradient(160deg, #cccccc 15%, #b8bbbe 90%);
+  border-radius: 2%;
+  padding: 0.5rem;
+  padding-bottom: 0;
+  border-radius: 4px;
+}
+
+.wrap-card h2 {
+  line-height: 2.5rem;
+  font-size: 1.8rem;
+  margin-left: 1rem;
+}
+
+.wrap-card ul {
+  min-height: 26px;
+}
+
+.card-foot {
+  display: inline-block;
+  margin: 0.5rem;
+}
+
+.card-foot-add {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: 500;
+  padding: 2px 3px;
+  background-color: #ccc;
+  border-radius: 4px;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.card-foot-add:hover {
+  background-color: #0d8d7b;
+  color: #FFF;
+}
+
+.card-foot p {
+  margin: 0;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.card-foot:hover {
+  cursor: pointer;
+}
+/*# sourceMappingURL=styles.css.map */
