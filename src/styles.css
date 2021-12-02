@@ -19,7 +19,7 @@ ul {
 
 .wrap-card {
   background-color: #cccccc;
-  background-image: linear-gradient(160deg, #cccccc 15%, #b8bbbe 90%);
+  background-image: linear-gradient(160deg, #f4fffa 15%, #d5dbff 90%);
   border-radius: 2%;
   padding: 0.5rem;
   padding-bottom: 0;
@@ -34,6 +34,15 @@ ul {
 
 .wrap-card ul {
   min-height: 26px;
+}
+
+.wrap-card ul li {
+  font-size: 15px;
+  line-height: 2;
+}
+
+.wrap-card ul li:hover, .wrap-card ul li:active, .wrap-card ul li:focus {
+  font-weight: 500;
 }
 
 .card-foot {
@@ -57,7 +66,7 @@ ul {
           align-items: center;
   font-weight: 500;
   padding: 2px 3px;
-  background-color: #ccc;
+  background-color: #f5f5f5;
   border-radius: 4px;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
@@ -76,5 +85,38 @@ ul {
 
 .card-foot:hover {
   cursor: pointer;
+}
+
+.cdk-drag-preview {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  font-size: 15px;
+  font-weight: 500;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: row !important;
+          flex-direction: row !important;
+  -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+          align-items: center !important;
+  line-height: 2 !important;
+  -webkit-box-pack: start !important;
+      -ms-flex-pack: start !important;
+          justify-content: start !important;
+}
+
+.example-custom-placeholder {
+  background: #ccc;
+  border: dotted 3px #999;
+  min-height: 42px;
+  -webkit-transition: -webkit-transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: -webkit-transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 /*# sourceMappingURL=styles.css.map */

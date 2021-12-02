@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Task manager</h1>
+<div mat-dialog-content>
+  <h3 *ngIf="status == 'new'">Add your new task here</h3>
+  <h3 *ngIf="status == 'progress'">Task in progress...</h3>
+  <h3 *ngIf="status == 'done'">Already done with...</h3>
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>New Task</mat-label>
+    <input matInput [(ngModel)]="data.task">
+    <button *ngIf="data.task" matSuffix mat-icon-button aria-label="Clear" (click)="data.task=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="just-around">
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.task" cdkFocusInitial (click)="onAddTask()">Ok</button>
+</div>

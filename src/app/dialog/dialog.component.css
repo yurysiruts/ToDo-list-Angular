@@ -1,0 +1,9 @@
+.full-width {
+  width: 100%;
+}
+
+.just-around {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+/*# sourceMappingURL=dialog.component.css.map */
