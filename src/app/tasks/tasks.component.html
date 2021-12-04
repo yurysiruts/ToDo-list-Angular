@@ -1,0 +1,74 @@
+<div class="row" cdkDropListGroup>
+  <div class="col-md-4">
+    <div class="wrap-card">
+      <h2>To Do</h2>
+
+      <div class="card">
+        <ul
+          cdkDropList
+          [cdkDropListData]="todos"
+          class="list-group list-group-flush"
+          (cdkDropListDropped)="drop($event)">
+          <li class="list-group-item" *ngFor="let item of todos; let i = index" cdkDrag>
+            <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+            <app-task [task]="item" [index]="i"></app-task>
+          </li>
+        </ul>
+      </div>
+      <div class="card-foot">
+        <div class="card-foot-add" (click)="openDialog('todo')">
+          <mat-icon class="mat-icon">add</mat-icon>
+          <p>Add new card</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="wrap-card">
+      <h2>In progress</h2>
+
+      <div class="card">
+        <ul
+          cdkDropList
+          [cdkDropListData]="inprogress" 
+          class="list-group list-group-flush"
+          (cdkDropListDropped)="drop($event)">
+          <li class="list-group-item" *ngFor="let item of inprogress; let i = index" cdkDrag>
+            <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+            <app-task [task]="item" [index]="i"></app-task>
+          </li>
+        </ul>
+      </div>
+      <div class="card-foot">
+        <div class="card-foot-add" (click)="openDialog('progress')">
+          <mat-icon class="mat-icon">add</mat-icon>
+          <p>Add new card</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="wrap-card">
+      <h2>Done</h2>
+
+      <div class="card">
+        <ul
+          cdkDropList
+          [cdkDropListData]="done" 
+          class="list-group list-group-flush"
+          (cdkDropListDropped)="drop($event)">
+          <li class="list-group-item" *ngFor="let item of done; let i = index" cdkDrag>
+            <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+            <app-task [task]="item" [index]="i"></app-task>
+          </li>
+        </ul>
+      </div>
+      <div class="card-foot">
+        <div class="card-foot-add" (click)="openDialog('done')">
+          <mat-icon class="mat-icon">add</mat-icon>
+          <p>Add new card</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

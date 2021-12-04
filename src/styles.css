@@ -24,6 +24,8 @@ ul {
   padding: 0.5rem;
   padding-bottom: 0;
   border-radius: 4px;
+  -webkit-box-shadow: 1px 1px 13px #6a7274;
+          box-shadow: 1px 1px 13px #6a7274;
 }
 
 .wrap-card h2 {
@@ -37,12 +39,33 @@ ul {
 }
 
 .wrap-card ul li {
+  padding: 0;
   font-size: 15px;
   line-height: 2;
 }
 
+.wrap-card ul li p {
+  line-height: 1.2;
+}
+
 .wrap-card ul li:hover, .wrap-card ul li:active, .wrap-card ul li:focus {
+  -webkit-box-shadow: 0px 9px 8px -11px #9e9e9e, 0px -9px 8px -11px #9e9e9e;
+          box-shadow: 0px 9px 8px -11px #9e9e9e, 0px -9px 8px -11px #9e9e9e;
+  z-index: 1;
+}
+
+.wrap-card ul li:hover h4, .wrap-card ul li:active h4, .wrap-card ul li:focus h4 {
   font-weight: 500;
+}
+
+.wrap-card ul li:last-child:hover {
+  -webkit-box-shadow: 0 0 0 0 #9e9e9e, 0px -9px 8px -11px #9e9e9e;
+          box-shadow: 0 0 0 0 #9e9e9e, 0px -9px 8px -11px #9e9e9e;
+}
+
+.wrap-card ul li:first-child:hover {
+  -webkit-box-shadow: 0px 9px 8px -11px #9e9e9e, 0 0 0 0 #9e9e9e;
+          box-shadow: 0px 9px 8px -11px #9e9e9e, 0 0 0 0 #9e9e9e;
 }
 
 .card-foot {

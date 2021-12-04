@@ -1,0 +1,80 @@
+.li-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+
+.li-left {
+  display: inline-block;
+  width: 85%;
+}
+
+.li-left-time {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #297c7c;
+}
+
+.li-left-time span {
+  font-size: 12px;
+}
+
+.li-left-time mat-icon {
+  font-size: 21px;
+}
+
+.li-right {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 10%;
+  max-height: 52px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: darkgrey;
+  opacity: 0;
+  -webkit-transition: opacity 0.33s ease-in-out;
+  transition: opacity 0.33s ease-in-out;
+}
+
+.li-right mat-icon.delete {
+  cursor: pointer;
+  padding-left: 2px;
+  font-size: 21px;
+}
+
+.li-right mat-icon.arrow {
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.li-group:hover .li-right {
+  opacity: 1;
+}
+
+h4 {
+  margin-bottom: 4px;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+/*# sourceMappingURL=task.component.css.map */

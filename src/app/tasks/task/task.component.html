@@ -1,0 +1,18 @@
+<div class="li-group">
+  <div class="li-left">
+    <h4>{{ (index+1) + ': ' + task.taskName }}</h4>
+    <div class="li-left-time" *ngIf="task.status === 'todo'">
+      <mat-icon>access_time</mat-icon><span>{{ task.addDate | date }}</span>
+    </div>
+    <div class="li-left-time" *ngIf="task.status === 'progress'">
+      <mat-icon>access_time</mat-icon><span>{{ task.progreeDate | date }}</span>
+    </div>
+    <div class="li-left-time" *ngIf="task.status === 'done'">
+      <mat-icon>access_time</mat-icon><span>{{ task.doneDate | date }}</span>
+    </div>
+  </div>
+  <div class="li-right">
+    <mat-icon class="delete">delete_forever</mat-icon>
+    <mat-icon class="arrow">keyboard_arrow_down</mat-icon>
+  </div>
+</div>

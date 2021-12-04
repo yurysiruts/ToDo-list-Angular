@@ -6,4 +6,9 @@
   -ms-flex-pack: distribute;
       justify-content: space-around;
 }
+
+.dialog-input {
+  font-size: 16px;
+  line-height: 1.5;
+}
 /*# sourceMappingURL=dialog.component.css.map */

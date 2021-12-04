@@ -5,13 +5,13 @@
   <h3 *ngIf="status == 'done'">Already done with...</h3>
   <mat-form-field appearance="fill" class="full-width">
     <mat-label>New Task</mat-label>
-    <input matInput [(ngModel)]="data.task">
-    <button *ngIf="data.task" matSuffix mat-icon-button aria-label="Clear" (click)="data.task=''">
+    <input matInput [(ngModel)]="data.taskName" class="dialog-input">
+    <button *ngIf="data.taskName" matSuffix mat-icon-button aria-label="Clear" (click)="data.taskName=''">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
 </div>
 <div mat-dialog-actions class="just-around">
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.task" cdkFocusInitial (click)="onAddTask()">Ok</button>
+  <button mat-button [mat-dialog-close]="data.taskName" cdkFocusInitial (click)="onAddTask()">Ok</button>
 </div>
