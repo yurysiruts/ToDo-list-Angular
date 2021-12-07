@@ -5,6 +5,8 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { DialogComponent } from '../dialog/dialog.component';
 import { TasksService } from '../shared/tasks.service';
 import { Task } from '../shared/Task';
+import { Subscription, noop } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tasks',
@@ -16,13 +18,48 @@ export class TasksComponent implements OnInit {
   todos: Task[] = [];
   inprogress: Task[] = [];
   done: Task[] = [];
+  tasksArr: Task[] = [];
+
+  subscription: Subscription;
 
   constructor(public dialog: MatDialog, public tasksService: TasksService) {}
 
-  ngOnInit(): void {
-    this.todos = this.tasksService.todos;
-    this.inprogress = this.tasksService.inprogress;
-    this.done = this.tasksService.done;
+  subscriber = {
+    next: (tasks: Task[]) => {
+      tasks.forEach((taskObj) => {
+        if(taskObj.status === 'todo') {
+          this.todos.push(taskObj);
+        } else if(taskObj.status === 'progress') {
+          this.inprogress.push(taskObj);
+        } else {
+          this.done.push(taskObj);
+        }
+      });
+    },
+    error: noop,
+    complete: () => {}
+  };
+
+  updateSubscriber = {
+    next: (tasks: Task[]) => {
+      this.todos = [];
+      this.inprogress = [];
+      this.done = [];
+      tasks.forEach((taskObj) => {
+        if(taskObj.status === 'todo') {
+          this.todos.push(taskObj);
+        } else if(taskObj.status === 'progress') {
+          this.inprogress.push(taskObj);
+        } else {
+          this.done.push(taskObj);
+        }
+      });
+    }
+  };
+
+  ngOnInit() {
+    this.tasksService.getTasks().subscribe(this.subscriber);
+    this.subscription = this.tasksService.tasksChanged.subscribe(this.updateSubscriber);
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -50,5 +87,8 @@ export class TasksComponent implements OnInit {
       console.log(result);
     });
   }
-
+  
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }

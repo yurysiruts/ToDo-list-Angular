@@ -1,39 +1,37 @@
 import { Injectable } from "@angular/core";
+import { Observable, of, Subject } from "rxjs";
 import { Task } from "./Task";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TasksService {
-  todos: Task[] = [
+  tasks: Task[] = [
     {
       taskName: "Test One",
       taskDescription: "Descirption for test 1",
       status: "todo",
-      addDate: Date.now(),
+      addDate: new Date('12/2/202').getTime(),
       progreeDate: null,
       doneDate: null,
-      id: null
+      id: Math.random().toString(16)
     },
     {
       taskName: "Test Two",
       taskDescription: "Descirption for test 2",
       status: "todo",
-      addDate: Date.now(),
+      addDate: new Date('12/2/202').getTime(),
       progreeDate: null,
       doneDate: null,
-      id: null
-    },
-  ];
-  inprogress: Task[] = [
-    {
+      id: Math.random().toString(16)
+    },    {
       taskName: "Stand",
       taskDescription: "Descirption for task in progress",
       status: "progress",
       addDate: null,
       progreeDate: new Date('03/20/2020').getTime(),
       doneDate: null,
-      id: null
+      id: Math.random().toString(16)
     },
     {
       taskName: "Code",
@@ -42,7 +40,7 @@ export class TasksService {
       addDate: null,
       progreeDate: new Date('03/20/2020').getTime(),
       doneDate: null,
-      id: null
+      id: Math.random().toString(16)
     },
     {
       taskName: "Check e-mail",
@@ -51,18 +49,15 @@ export class TasksService {
       addDate: null,
       progreeDate: new Date('03/20/2020').getTime(),
       doneDate: null,
-      id: null
-    }
-  ];
-  done: Task[] = [
-    {
+      id: Math.random().toString(16)
+    },    {
       taskName: "Get up",
       taskDescription: "Descirption for already done tasks",
       status: "done",
       addDate: null,
       progreeDate: null,
       doneDate: new Date('06/5/2021').getTime(),
-      id: null
+      id: Math.random().toString(16)
     },
     {
       taskName: "Brush teeth",
@@ -71,7 +66,7 @@ export class TasksService {
       addDate: null,
       progreeDate: null,
       doneDate: new Date('06/5/2021').getTime(),
-      id: null
+      id: Math.random().toString(16)
     },
     {
       taskName: "Take a shower",
@@ -80,34 +75,29 @@ export class TasksService {
       addDate: null,
       progreeDate: null,
       doneDate: new Date('06/5/2021').getTime(),
-      id: null
+      id: Math.random().toString(16)
     }
-  ];
+  ]
+
+  tasksChanged = new Subject<Task[]>();
+
+  getTasks(): Observable<Task[]> {
+    const tasks$ = of(this.tasks);
+    return tasks$;
+  }  
 
   addTask(newTask: Task) {
-    console.log(newTask);
-    if(newTask.status === 'todo') {
-      this.todos.push({
-        taskName: newTask.taskName,
-        taskDescription: "Mock Description for now...",
-        status: newTask.status,
-        addDate: newTask.addDate,
-      });
-    }
-    else if(newTask.status === 'progress') {
-      this.inprogress.push({
-        taskName: newTask.taskName,
-        taskDescription: "Mock Description for now...",
-        status: newTask.status,
-        addDate: newTask.addDate,
-      });
-    } else {
-      this.done.push({
-        taskName: newTask.taskName,
-        taskDescription: "Mock Description for now...",
-        status: newTask.status,
-        addDate: newTask.addDate,
-      });
-    };
+    this.tasks.push(newTask);
+    this.tasksChanged.next(this.tasks);
+    console.log(this.tasks)
+  }
+
+  deleteTask(id) {
+    const idx = this.tasks.findIndex((task) => {
+      return task.id === id
+    });
+    this.tasks.splice(idx, 1);
+    console.log(this.tasks);
+    this.tasksChanged.next(this.tasks);
   }
 }

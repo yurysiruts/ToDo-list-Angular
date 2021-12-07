@@ -28,7 +28,15 @@ export class DialogComponent implements OnInit {
   }
 
   onAddTask() {
-    this.data.addDate = Date.now();
+    if(this.data.status === 'todo') {
+      this.data.addDate = Date.now();
+    } else if(this.data.status === 'progress') {
+      this.data.progreeDate = Date.now();
+    } else {
+      this.data.doneDate = Date.now();
+    };
+    this.data.id = Math.random().toString(16);
+    console.log(this.data);
     this.tasksService.addTask(this.data);
   }
 }
