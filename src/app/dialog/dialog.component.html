@@ -10,6 +10,17 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
+  <button mat-button (click)="addDescription()" *ngIf="!description">
+    <mat-icon>add</mat-icon>
+    <span>Add description</span>
+  </button>
+  <mat-form-field appearance="fill" class="full-width" *ngIf="description">
+    <mat-label>Description</mat-label>
+    <textarea matInput [(ngModel)]="data.taskDescription" class="dialog-input"></textarea>
+    <button *ngIf="data.taskDescription" matSuffix mat-icon-button aria-label="Clear" (click)="data.taskDescription=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
 </div>
 <div mat-dialog-actions class="just-around">
   <button mat-button (click)="onNoClick()">No Thanks</button>

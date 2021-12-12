@@ -8,6 +8,7 @@ import { TasksService } from 'src/app/shared/tasks.service';
   styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit {
+  cardToggled: boolean = false;
 
   @Input() task: Task;
   @Input() index: number;
@@ -22,4 +23,8 @@ export class TaskComponent implements OnInit {
     this.tasksService.deleteTask(id);
   }
 
+  onCardToggle() {
+    this.cardToggled = !this.cardToggled;
+    console.log(this.cardToggled)
+  }
 }

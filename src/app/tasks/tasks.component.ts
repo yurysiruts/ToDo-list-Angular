@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
@@ -13,18 +13,18 @@ import { map } from 'rxjs/operators';
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss']
 })
-export class TasksComponent implements OnInit {
+export class TasksComponent implements OnInit, OnDestroy {
   public newTask: string;
   todos: Task[] = [];
   inprogress: Task[] = [];
   done: Task[] = [];
   tasksArr: Task[] = [];
-
+  differ: any;
   subscription: Subscription;
 
   constructor(public dialog: MatDialog, public tasksService: TasksService) {}
 
-  subscriber = {
+  getSubscriber = {
     next: (tasks: Task[]) => {
       tasks.forEach((taskObj) => {
         if(taskObj.status === 'todo') {
@@ -58,7 +58,7 @@ export class TasksComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.tasksService.getTasks().subscribe(this.subscriber);
+    this.tasksService.getTasks().subscribe(this.getSubscriber);
     this.subscription = this.tasksService.tasksChanged.subscribe(this.updateSubscriber);
   }
 
@@ -66,11 +66,12 @@ export class TasksComponent implements OnInit {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
+      console.log(event)
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
-        event.currentIndex,
+        event.currentIndex
       );
     }
   }

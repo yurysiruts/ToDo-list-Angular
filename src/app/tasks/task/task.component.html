@@ -1,18 +1,47 @@
-<div class="li-group">
-  <div class="li-left">
-    <h4>{{ (index+1) + ': ' + task.taskName }}</h4>
-    <div class="li-left-time" *ngIf="task.status === 'todo'">
-      <mat-icon>access_time</mat-icon><span>{{ task.addDate | date }}</span>
+<div class="li-wrap" [ngClass]="{chose_border: cardToggled === true}">
+  <div class="li-group" [ngClass]="{divide_line: cardToggled === true}">
+    <div class="li-left">
+      <h4>{{ (index+1) + ': ' + task.taskName }}</h4>
+      <div class="li-left-time" *ngIf="task.status === 'todo'">
+        <mat-icon>access_time</mat-icon><span>{{ task.addDate | date }}</span>
+      </div>
+      <div class="li-left-time" *ngIf="task.status === 'progress'">
+        <mat-icon>access_time</mat-icon><span>{{ task.progreeDate | date }}</span>
+      </div>
+      <div class="li-left-time" *ngIf="task.status === 'done'">
+        <mat-icon>access_time</mat-icon><span>{{ task.doneDate | date }}</span>
+      </div>
     </div>
-    <div class="li-left-time" *ngIf="task.status === 'progress'">
-      <mat-icon>access_time</mat-icon><span>{{ task.progreeDate | date }}</span>
-    </div>
-    <div class="li-left-time" *ngIf="task.status === 'done'">
-      <mat-icon>access_time</mat-icon><span>{{ task.doneDate | date }}</span>
+    <div class="li-right" [ngClass]="{opened: cardToggled === true}">
+      <mat-icon class="delete" (click)="deleteTask(task.id)">delete_forever</mat-icon>
+      <mat-icon class="arrow" (click)="onCardToggle()">keyboard_arrow_down</mat-icon>
     </div>
   </div>
-  <div class="li-right">
-    <mat-icon class="delete" (click)="deleteTask(task.id)">delete_forever</mat-icon>
-    <mat-icon class="arrow">keyboard_arrow_down</mat-icon>
+  <div class="li-group-column" [ngClass]="{opened: cardToggled === true}">
+    <div class="inline">
+      <h5 class="description-label">Task description:</h5>
+      <p class="description-text">{{ task.taskDescription }}</p>
+    </div>
+    <div class="inline">
+      <h5 class="description-label">Task added:</h5>
+      <p *ngIf="task.addDate" class="description-text">{{ task.addDate | date }}</p>
+      <div *ngIf="task.addDate === null" class="mat-dash-wrap">
+        <mat-icon class="mat-dash">minimize</mat-icon>
+      </div>
+    </div>
+    <div class="inline">
+      <h5 class="description-label">In progress since:</h5>
+      <p *ngIf="task.progreeDate"  class="description-text">{{ task.progreeDate | date }}</p>
+      <div *ngIf="task.progreeDate === null" class="mat-dash-wrap">
+        <mat-icon class="mat-dash">minimize</mat-icon>
+      </div>
+    </div>
+    <div class="inline">
+      <h5 class="description-label">Task finished on:</h5>
+      <p *ngIf="task.doneDate" class="description-text">{{ task.doneDate | date }}</p>
+      <div *ngIf="task.doneDate === null" class="mat-dash-wrap">
+        <mat-icon class="mat-dash">minimize</mat-icon>
+      </div>
+    </div>
   </div>
 </div>

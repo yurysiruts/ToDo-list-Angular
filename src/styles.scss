@@ -11,6 +11,10 @@ body {
 ul {
   list-style: none;
 }
+.mat-form-field-flex {
+  display: inline-flex !important;
+  align-items: start !important;
+}
 
 // Global card styles
 .wrap-card {

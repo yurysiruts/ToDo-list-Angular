@@ -12,6 +12,7 @@ import { Task } from '../shared/Task';
 export class DialogComponent implements OnInit {
 
   public status;
+  public description: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
@@ -38,5 +39,9 @@ export class DialogComponent implements OnInit {
     this.data.id = Math.random().toString(16);
     console.log(this.data);
     this.tasksService.addTask(this.data);
+  }
+
+  addDescription() {
+    this.description = !this.description;
   }
 }

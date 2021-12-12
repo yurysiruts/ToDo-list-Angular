@@ -9,9 +9,9 @@ export class TasksService {
   tasks: Task[] = [
     {
       taskName: "Test One",
-      taskDescription: "Descirption for test 1",
+      taskDescription: "Some dummy text right here added by myself, couse lorem wasn't working here in the string or smthing u know -)",
       status: "todo",
-      addDate: new Date('12/2/202').getTime(),
+      addDate: new Date('12/2/2021').getTime(),
       progreeDate: null,
       doneDate: null,
       id: Math.random().toString(16)
@@ -20,7 +20,7 @@ export class TasksService {
       taskName: "Test Two",
       taskDescription: "Descirption for test 2",
       status: "todo",
-      addDate: new Date('12/2/202').getTime(),
+      addDate: new Date('12/2/2021').getTime(),
       progreeDate: null,
       doneDate: null,
       id: Math.random().toString(16)

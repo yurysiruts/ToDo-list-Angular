@@ -11,4 +11,13 @@
   font-size: 16px;
   line-height: 1.5;
 }
+
+.mat-form-field-flex {
+  display: -webkit-inline-box !important;
+  display: -ms-inline-flexbox !important;
+  display: inline-flex !important;
+  -webkit-box-align: start !important;
+      -ms-flex-align: start !important;
+          align-items: start !important;
+}
 /*# sourceMappingURL=dialog.component.css.map */
