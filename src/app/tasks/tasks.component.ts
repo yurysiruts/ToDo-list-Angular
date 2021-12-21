@@ -18,6 +18,7 @@ export class TasksComponent implements OnInit, OnDestroy {
   todos: Task[] = [];
   inprogress: Task[] = [];
   done: Task[] = [];
+
   tasksArr: Task[] = [];
   differ: any;
   subscription: Subscription;
@@ -62,17 +63,26 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.subscription = this.tasksService.tasksChanged.subscribe(this.updateSubscriber);
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<any>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      console.log(event)
+      console.log(event);
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
+    }
+
+    // Updating task status
+    if(event.container.data == this.inprogress) {
+      this.tasksService.updateProgressList(event.container.data);
+    } else if(event.container.data == this.done) {
+      this.tasksService.updateDoneList(event.container.data);  
+    } else {
+      this.tasksService.updateTodoList(event.container.data);
     }
   }
 

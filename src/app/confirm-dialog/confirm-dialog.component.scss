@@ -1,0 +1,57 @@
+.mat-dialog-container {
+  background-color: #f4fdff !important;
+}
+
+.dialog-card {
+  margin: 0px 10px 10px;
+}
+
+.dialog-content {
+  margin-bottom: 8px;
+}
+
+.dialog-title {
+  margin: 0 0 10px;
+}
+
+.dialog-message {
+  position: relative;
+  margin: 0 0 10px;
+}
+
+.dialog-message::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 107%;
+  transform: translateX(-3%);
+  height: 50%;
+  background-color: #0d8d7b26;
+  z-index: 1;
+  border-bottom-left-radius: 1px;
+  border-bottom-right-radius: 1px;
+}
+
+.dialog-ul {
+  list-style: disc;
+
+  li span {
+    font-size: 17px;
+    font-weight: 500;
+  }
+}
+
+.task-name {
+  margin: 0 12px 12px;
+}
+
+.dialog-btns {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-success {
+  margin-right: 66px;
+}

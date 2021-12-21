@@ -1,0 +1,13 @@
+<div class="dialog-card">
+  <h1 mat-dialog-title class="dialog-title">{{data.title}}</h1>
+  <div mat-dialog-content  class="dialog-content">
+    <h3 class="dialog-message">Are you sure, you want to remove this task:</h3>
+    <ul class="dialog-ul">
+      <li><span>{{data.name}}</span></li>
+    </ul>
+  </div>
+  <div  class="dialog-btns">
+    <input  class="btn btn-success" type="button" value="Confirm" [mat-dialog-close]="true">
+    <input  class="btn btn-danger" type="button" value="Cancel"  [mat-dialog-close]="false">
+  </div>
+</div>

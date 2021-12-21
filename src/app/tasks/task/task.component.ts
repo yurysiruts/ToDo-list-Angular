@@ -25,6 +25,5 @@ export class TaskComponent implements OnInit {
 
   onCardToggle() {
     this.cardToggled = !this.cardToggled;
-    console.log(this.cardToggled)
   }
 }

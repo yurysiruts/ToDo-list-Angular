@@ -1,6 +1,9 @@
 import { Injectable } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { Observable, of, Subject } from "rxjs";
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { Task } from "./Task";
+
 
 @Injectable({
   providedIn: 'root'
@@ -81,6 +84,8 @@ export class TasksService {
 
   tasksChanged = new Subject<Task[]>();
 
+  constructor(private removeDialog: MatDialog) {}
+
   getTasks(): Observable<Task[]> {
     const tasks$ = of(this.tasks);
     return tasks$;
@@ -93,11 +98,61 @@ export class TasksService {
   }
 
   deleteTask(id) {
+    let taskObj: Task;
     const idx = this.tasks.findIndex((task) => {
-      return task.id === id
+      taskObj = task;
+      return task.id === id;
     });
-    this.tasks.splice(idx, 1);
-    console.log(this.tasks);
-    this.tasksChanged.next(this.tasks);
+    const confirmDialog = this.removeDialog.open(ConfirmDialogComponent, {
+      data: {
+        name: `${taskObj.taskName}`,
+        title: "Confirmation message"
+      }
+    });
+    confirmDialog.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.tasks.splice(idx, 1);
+        console.log(this.tasks);
+        this.tasksChanged.next(this.tasks);
+      }
+    });
+  }
+
+  updateProgressList(newProgressList) {
+    newProgressList.forEach(item => {
+      if(item.status !== 'progress') {
+        item.status = 'progress';
+      };
+      if(item.progreeDate === null) {
+        console.log(new Date().getTime());
+        item.progreeDate = new Date().getTime();
+      };
+    });
+    console.log(newProgressList);
+  }
+
+  updateDoneList(newDoneList) {
+    newDoneList.forEach(item => {
+      if(item.status !== 'done') {
+        item.status = 'done';
+      };
+      if(item.doneDate === null) {
+        console.log(new Date().getTime());
+        item.doneDate = new Date().getTime();
+      };
+    });
+    console.log(newDoneList);
+  }
+
+  updateTodoList(newTodoList) {
+    newTodoList.forEach(item => {
+      if(item.status !== 'todo') {
+        item.status = 'todo';
+      };
+      if(item.addDate === null) {
+        console.log(new Date().getTime());
+        item.addDate = new Date().getTime();
+      };
+    });
   }
 }

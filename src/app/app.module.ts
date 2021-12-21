@@ -14,6 +14,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { TasksComponent } from './tasks/tasks.component';
 import { TaskComponent } from './tasks/task/task.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { TaskComponent } from './tasks/task/task.component';
     AppComponent,
     DialogComponent,
     TasksComponent,
-    TaskComponent
+    TaskComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -21,7 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
       let count = 0;
       setInterval(() => {
         observer.next(count);
-        if(count === 5) { observer.complete() }
+        if(count === 3) { observer.complete() }
         count++;
       }, 1000)
     });
