@@ -1,21 +1,26 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Task } from './Task';
 import { TasksService } from './tasks.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataStorageService implements OnInit {
+export class DataStorageService implements OnDestroy {
+
+  subscription: Subscription;
 
   constructor(private http: HttpClient, private tasksService: TasksService) {}
 
-  ngOnInit(): void {
-    // this.tasksService.tasksChanged.subscribe(
-    //   (tasks: Task[]) => {
-    //     this.fetchTasks();
-    //   }
-    // )
+  subscriber = {
+    next: (tasks) => {
+      this.createAndStoreTasks(tasks);
+    }
+  }
+
+  storageCall() {
+    this.subscription = this.tasksService.tasksChanged.subscribe(this.subscriber);
   }
 
   createAndStoreTasks(tasks: Task[]) {
@@ -36,5 +41,9 @@ export class DataStorageService implements OnInit {
         this.tasksService.setTasks(responseTasks);
         console.log(responseTasks);
       })
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
