@@ -3,8 +3,7 @@ import { TasksService } from './shared/tasks.service';
 import { Task } from './shared/Task';
 import { noop, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-
+import { DataStorageService } from './shared/data-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +13,7 @@ import { map } from 'rxjs/operators';
 export class AppComponent implements OnInit, OnDestroy {
   firstSubscription: Subscription;
 
-  constructor(public tasksService: TasksService) {}
+  constructor(public tasksService: TasksService, private dataStorageService: DataStorageService) {}
 
   ngOnInit() {
     const intervObs = Observable.create(observer => {
@@ -35,8 +34,14 @@ export class AppComponent implements OnInit, OnDestroy {
       );
   }
 
+  onFetch() {
+    this.dataStorageService.fetchTasks().subscribe(responseTasks => {
+      this.tasksService.setTasks(responseTasks);
+      console.log(responseTasks);
+    })
+  }
+
   ngOnDestroy() {
     this.firstSubscription.unsubscribe();
   }
-  
 }

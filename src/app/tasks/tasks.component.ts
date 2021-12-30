@@ -7,6 +7,7 @@ import { TasksService } from '../shared/tasks.service';
 import { Task } from '../shared/Task';
 import { Subscription, noop } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { DataStorageService } from '../shared/data-storage.service';
 
 @Component({
   selector: 'app-tasks',
@@ -23,7 +24,11 @@ export class TasksComponent implements OnInit, OnDestroy {
   differ: any;
   subscription: Subscription;
 
-  constructor(public dialog: MatDialog, public tasksService: TasksService) {}
+  constructor(
+    private dialog: MatDialog, 
+    private tasksService: TasksService, 
+    private dataStorageService: DataStorageService
+  ) {}
 
   getSubscriber = {
     next: (tasks: Task[]) => {
@@ -59,8 +64,15 @@ export class TasksComponent implements OnInit, OnDestroy {
   };
 
   ngOnInit() {
+    // initial load of tasks in the UI 
     this.tasksService.getTasks().subscribe(this.getSubscriber);
+    // reload of tasks in the UI after every change detected
     this.subscription = this.tasksService.tasksChanged.subscribe(this.updateSubscriber);
+    // load all tasks from firebase db
+    this.dataStorageService.fetchTasks().subscribe(responseTasks => {
+      this.tasksService.setTasks(responseTasks);
+      console.log(responseTasks);
+    })
   }
 
   drop(event: CdkDragDrop<any>) {
@@ -75,15 +87,16 @@ export class TasksComponent implements OnInit, OnDestroy {
         event.currentIndex
       );
     }
-
     // Updating task status
     if(event.container.data == this.inprogress) {
       this.tasksService.updateProgressList(event.container.data);
     } else if(event.container.data == this.done) {
-      this.tasksService.updateDoneList(event.container.data);  
+      this.tasksService.updateDoneList(event.container.data);
     } else {
       this.tasksService.updateTodoList(event.container.data);
     }
+    // update tasks in db
+    // this.dataStorageService.createAndStoreTasks
   }
 
   openDialog(newStatus:string) {

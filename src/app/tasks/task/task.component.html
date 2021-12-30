@@ -21,25 +21,28 @@
     <div class="inline">
       <h5 class="description-label">Task description:</h5>
       <p class="description-text">{{ task.taskDescription }}</p>
+      <div *ngIf="task.taskDescription === null || !task.taskDescription" class="mat-dash-wrap">
+        <mat-icon class="mat-dash">minimize</mat-icon>
+      </div>
     </div>
     <div class="inline">
       <h5 class="description-label">Task added:</h5>
       <p *ngIf="task.addDate" class="description-text">{{ task.addDate | date }}</p>
-      <div *ngIf="task.addDate === null" class="mat-dash-wrap">
+      <div *ngIf="task.addDate === null || !task.addDate" class="mat-dash-wrap">
         <mat-icon class="mat-dash">minimize</mat-icon>
       </div>
     </div>
     <div class="inline">
       <h5 class="description-label">In progress since:</h5>
       <p *ngIf="task.progreeDate"  class="description-text">{{ task.progreeDate | date }}</p>
-      <div *ngIf="task.progreeDate === null" class="mat-dash-wrap">
+      <div *ngIf="task.progreeDate === null || !task.progreeDate" class="mat-dash-wrap">
         <mat-icon class="mat-dash">minimize</mat-icon>
       </div>
     </div>
     <div class="inline">
       <h5 class="description-label">Task finished on:</h5>
       <p *ngIf="task.doneDate" class="description-text">{{ task.doneDate | date }}</p>
-      <div *ngIf="task.doneDate === null" class="mat-dash-wrap">
+      <div *ngIf="task.doneDate === null || !task.doneDate" class="mat-dash-wrap">
         <mat-icon class="mat-dash">minimize</mat-icon>
       </div>
     </div>
