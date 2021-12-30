@@ -11,17 +11,17 @@ export class DataStorageService implements OnDestroy {
 
   subscription: Subscription;
 
-  constructor(private http: HttpClient, private tasksService: TasksService) {}
+  constructor(private http: HttpClient) {}
 
-  subscriber = {
-    next: (tasks) => {
-      this.createAndStoreTasks(tasks);
-    }
-  }
+  // subscriber = {
+  //   next: (tasks) => {
+  //     this.createAndStoreTasks(tasks);
+  //   }
+  // }
 
-  storageCall() {
-    this.subscription = this.tasksService.tasksChanged.subscribe(this.subscriber);
-  }
+  // storageCall() {
+  //   this.subscription = this.tasksService.tasksChanged.subscribe(this.subscriber);
+  // }
 
   createAndStoreTasks(tasks: Task[]) {
     this.http 
@@ -35,12 +35,8 @@ export class DataStorageService implements OnDestroy {
   }
 
   fetchTasks() {
-    this.http
+    return this.http
       .get<Task[]>('https://todo-list-manager-34149-default-rtdb.europe-west1.firebasedatabase.app/tasks.json')
-      .subscribe(responseTasks => {
-        this.tasksService.setTasks(responseTasks);
-        console.log(responseTasks);
-      })
   }
 
   ngOnDestroy(): void {
